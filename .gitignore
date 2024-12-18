@@ -1,8 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-chatbot/node_modules
-geminiai/config.py
+**/geminiai/config.py
+/chatbot/node_modules
 /.pnp
 .pnp.js
 
