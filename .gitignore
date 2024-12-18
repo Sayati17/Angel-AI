@@ -2,7 +2,7 @@
 
 # dependencies
 /chatbot/node_modules
-config.py
+geminiai/config.py
 /.pnp
 .pnp.js
 
