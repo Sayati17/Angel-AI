@@ -4,9 +4,9 @@ def fetch_data():
     conn = mysql.connector.connect(
         host="localhost",
         port=3306,
-        user="user",
+        user="root",
         password="",
-        database="table_name",
+        database="angelai",
     )
     cursor = conn.cursor()
     cursor.execute("SELECT InjectionId, InjectionName, InjectionDescription FROM tablepromptinjection")

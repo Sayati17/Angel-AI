@@ -7,7 +7,7 @@ def sim_check(user_query):
     data = fetch_data()
     embeddings = generate_embeddings(data)
 
-    index = initialize_pinecone("api_key", "us-west1-gcp", "name", dimension=384)
+    index = initialize_pinecone("pcsk_6UrqME_77Zb6THd4igPEaH92Yn7LRcSf65DoTtZz8gm9MSaWGwq6J4gRyvg6rjn4dSL735", "us-west1-gcp", "angelai", dimension=384)
 
     upsert_to_pinecone(index, embeddings)
 
