@@ -1,8 +1,9 @@
 from pinecone import Pinecone
+import config
 
 def initialize_pinecone(api_key, environment, index_name, dimension):
     pc = Pinecone(api_key=api_key)
-    index = pc.Index("angelai", "https://angelai-bbnnx1q.svc.aped-4627-b74a.pinecone.io")
+    index = pc.Index(config.pinecone_index_name, config.pinecone_index_host)
     return index
 
 def upsert_to_pinecone(index, embeddings, batch_size=100):
