@@ -10,4 +10,4 @@ geminiai_api = ""
 db_user = ""
 mysql_db = ""
 
-query = "testestasdasd"
+query = "qwe"
