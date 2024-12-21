@@ -4,6 +4,7 @@ import google.generativeai as genai
 from sim_db import sim_check
 from text_classifier import get_classification_score
 import config
+from sanitize import sanitize_input
 
 app = Flask(__name__)
 CORS(app)
@@ -16,15 +17,17 @@ def generate():
     data = request.json
     user_input = data.get("input")
     print("input: ", user_input)
+    results_sim = sim_check(user_input)
+    results_bert = get_classification_score(user_input)
+    print("results_sim: ", (results_sim['matches'][0]['score']) * 100)
+    print("results_bert: ", ((results_bert['score']) * 100))
+    if(((results_sim['matches'][0]['score']) * 100) > float(60) or ((results_bert['score']) * 100) > float(60)):
+        response_text= "Warning: Injection Detected"
+        return jsonify({"response": response_text })
     try:
+        user_input = sanitize_input(user_input)
         result = model.generate_content(user_input)
         response_text = result.text
-        results_sim = sim_check(user_input)
-        results_bert = get_classification_score(user_input)
-        print("results_sim: ", results_sim)
-        print("results_bert: ", results_bert)
-        if(results_sim > 60 | results_bert['score'] > 60):
-            response_text= "Warning: Injection Detected"
         return jsonify({"response": response_text })
     except Exception as e:
         print(f"Error: {e}")

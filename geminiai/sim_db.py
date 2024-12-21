@@ -4,8 +4,8 @@ from sentence_transformer import generate_embeddings, generate_embedding
 import config
 
 def sim_check(user_query):
-    data = fetch_data()
-    embeddings = generate_embeddings(data)
+    data1, _ = fetch_data()
+    embeddings = generate_embeddings(data1)
 
     index = initialize_pinecone(config.pinecone_api, config.pinecone_region, config.pinecone_db, dimension=config.pinecone_dimenstion)
 

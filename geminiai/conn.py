@@ -11,6 +11,10 @@ def fetch_data():
     )
     cursor = conn.cursor()
     cursor.execute(config.query)
-    data = cursor.fetchall()
+    data1 = cursor.fetchall()
+
+    cursor.execute(config.query2)
+    data2 = cursor.fetchall()
+
     conn.close()
-    return data
+    return data1,data2
