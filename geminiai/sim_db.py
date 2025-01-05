@@ -1,18 +1,33 @@
-from conn import fetch_data
-from pinecone_setup import initialize_pinecone, upsert_to_pinecone, query_pinecone
-from sentence_transformer import generate_embeddings, generate_embedding
+from conn import mysqlConnect
+from pinecone_setup import pineconeHandler
+from sentence_transformer import embeddingGenerator
 import config
 
-def sim_check(user_query):
-    # data1, _ = fetch_data() (uncomment if pinecone does not have vector data, uncomment if pinecone index is new)
+class simmilarity_check:
+    def __init__(self, api_key, region, index_name, dimension):
+        self.api_key = api_key
+        self.region = region
+        self.index_name = index_name
+        self.dimension = dimension
+        self.index = self._initialize_pinecone()
 
-    # embeddings = generate_embeddings(data1) (uncomment if pinecone does not have vector data, uncomment if pinecone index is new)
+    def _initialize_pinecone(self):
+        return pineconeHandler(self.api_key, self.region, self.index_name, self.dimension)
+    
+    def prepare_index(self):
+        db_connection = mysqlConnect()
+        db_connection.connect()
+        data1,_ = db_connection.fetch_data()
+        db_connection.closeConn()
 
-    index = initialize_pinecone(config.pinecone_api, config.pinecone_region, config.pinecone_db, dimension=config.pinecone_dimenstion)
+        embed_gen = embeddingGenerator()
+        embeddings = embed_gen.generate_embeddings(data1)
 
-    # upsert_to_pinecone(index, embeddings) (uncomment if pinecone does not have vector data, uncomment if pinecone index is new)
+        self.index.upsert(embeddings)
 
-    query_embedding = generate_embedding(user_query).tolist()
+    def check_similarity(self, user_query):
 
-    results = query_pinecone(index, query_embedding)
-    return results
+        embed_gen = embeddingGenerator()
+        query_embedding = embed_gen.generate_embedding(user_query).tolist()
+        results = self.index.query(query_embedding, top_k=1)
+        return results

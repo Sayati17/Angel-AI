@@ -1,20 +1,39 @@
 import mysql.connector
 import config
 
-def fetch_data():
-    conn = mysql.connector.connect(
-        host="localhost",
-        port=3306,
-        user=config.db_user,
-        password="",
-        database=config.mysql_db,
-    )
-    cursor = conn.cursor()
-    cursor.execute(config.query)
-    data1 = cursor.fetchall()
+class mysqlConnect:
+    def __init__(self, host="localhost", port=3306, user=None, password=None, database=None):
+        self.host = host
+        self.port = port
+        self.user = user or config.db_user
+        self.password = password
+        self.database = database or config.mysql_db
+        self.connection = None
 
-    cursor.execute(config.query2)
-    data2 = cursor.fetchall()
+    def connect(self):
+        self.connection = mysql.connector.connect(
+            host=self.host,
+            port=self.port,
+            user=self.user,
+            password=self.password,
+            database=self.database,
+        )
 
-    conn.close()
-    return data1,data2
+    def fetch_data(self):
+        if not self.connection:
+            raise ConnectionError("Database Connection Error")
+        cursor = self.connection.cursor()
+
+        cursor.execute(config.query)
+        data1 = cursor.fetchall()
+
+        cursor.execute(config.query2)
+        data2 = cursor.fetchall()
+
+        cursor.close()
+        return data1,data2
+    
+    def closeConn(self):
+        if self.connection:
+            self.connection.close()
+            self.connection = None
