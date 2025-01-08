@@ -20,10 +20,18 @@ class simmilarity_check:
         data1,_ = db_connection.fetch_data()
         db_connection.closeConn()
 
+        if not self.is_index_empty():
+            return
+
         embed_gen = embeddingGenerator()
         embeddings = embed_gen.generate_embeddings(data1)
 
         self.index.upsert(embeddings)
+
+    def is_index_empty(self):
+        query = {"top_k": 1, "vector": [0] * self.dimension}
+        results = self.index.query(query["vector"], top_k=1)
+        return len(results['matches']) == 0
 
     def check_similarity(self, user_query):
 
