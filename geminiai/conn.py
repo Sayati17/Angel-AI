@@ -2,11 +2,11 @@ import mysql.connector
 import config
 
 class mysqlConnect:
-    def __init__(self, host="localhost", port=3306, user=None, password=None, database=None):
-        self.host = host
-        self.port = port
+    def __init__(self, host=None, port=None, user=None, password=None, database=None):
+        self.host = host or config.localhost
+        self.port = port or config.db_port
         self.user = user or config.db_user
-        self.password = password
+        self.password = password or config.db_password
         self.database = database or config.mysql_db
         self.connection = None
 

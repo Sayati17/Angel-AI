@@ -1,10 +1,12 @@
 from transformers import AutoTokenizer, AutoModelForSequenceClassification, pipeline
 import torch
+import config
 
 class textClassifier:
-    def __init__(self, model_name: str):
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForSequenceClassification.from_pretrained(model_name)
+    def __init__(self, model_name = None):
+        self.ai_model_name = model_name or config.model_name
+        self.tokenizer = AutoTokenizer.from_pretrained(self.ai_model_name)
+        self.model = AutoModelForSequenceClassification.from_pretrained(self.ai_model_name)
         self.classifier = pipeline(
             "text-classification",
             model=self.model,

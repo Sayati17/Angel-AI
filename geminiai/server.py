@@ -18,11 +18,8 @@ class AIService:
         def generate():
             data = request.json
             user_input = data.get("input")
-            sim_check = simmilarity_check(api_key=config.pinecone_api, 
-                                          region=config.pinecone_region, 
-                                          index_name=config.pinecone_index_name, 
-                                          dimension=config.pinecone_dimension)
-            classifier = textClassifier("protectai/deberta-v3-base-prompt-injection-v2")
+            sim_check = simmilarity_check()
+            classifier = textClassifier()
             result_sim = sim_check.check_similarity(user_input)
             result_bert = classifier.get_classification_score(user_input)
             if(((result_sim['matches'][0]['score']) * 100 ) > float(60) or (result_bert * 100) > 60):

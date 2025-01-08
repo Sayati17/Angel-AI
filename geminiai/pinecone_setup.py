@@ -2,11 +2,11 @@ from pinecone import Pinecone
 import config
 
 class pineconeHandler:
-    def __init__(self, api_key, environment, index_name, dimension):
-        self.api_key = api_key
-        self.environment = environment
-        self.index_name = index_name
-        self.dimension = dimension
+    def __init__(self, api_key=None, environment=None, index_name=None, dimension=None):
+        self.api_key = api_key or config.pinecone_api_key
+        self.environment = environment or config.pinecone_region
+        self.index_name = index_name or config.pinecone_index_name
+        self.dimension = dimension or config.pinecone_dimension
         self.pinecone_client = Pinecone(api_key=self.api_key)
         self.index = self.pinecone_client.Index(config.pinecone_index_name, config.pinecone_index_host)
 

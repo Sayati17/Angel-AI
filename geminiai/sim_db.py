@@ -4,11 +4,11 @@ from sentence_transformer import embeddingGenerator
 import config
 
 class simmilarity_check:
-    def __init__(self, api_key, region, index_name, dimension):
-        self.api_key = api_key
-        self.region = region
-        self.index_name = index_name
-        self.dimension = dimension
+    def __init__(self, api_key=None, region=None, index_name=None, dimension=None):
+        self.api_key = api_key or config.pinecone_api_key
+        self.region = region or config.pinecone_region
+        self.index_name = index_name or config.pinecone_index_name
+        self.dimension = dimension or config.pinecone_dimension
         self.index = self._initialize_pinecone()
 
     def _initialize_pinecone(self):

@@ -1,0 +1,6 @@
+mysql-connector-python
+pinecone-client
+regex
+sentence-transformers
+transformers
+torch
