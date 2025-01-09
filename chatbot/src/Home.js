@@ -8,9 +8,9 @@ export default function Home() {
       <HeaderComponent />
       <Box sx={{ 
         display: 'flex', 
-        justifyContent: 'center',   // Centers horizontally
-        alignItems: 'center',       // Centers vertically
-        marginTop: '50px'            // Keeps the 50px margin if needed
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '50px'
       }}>
         <Box sx={{ 
           display: 'inline-block', 
