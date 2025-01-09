@@ -3,7 +3,7 @@ import config
 
 class mysqlConnect:
     def __init__(self, host=None, port=None, user=None, password=None, database=None):
-        self.host = host or config.localhost
+        self.host = host or config.db_host
         self.port = port or config.db_port
         self.user = user or config.db_user
         self.password = password or config.db_password
