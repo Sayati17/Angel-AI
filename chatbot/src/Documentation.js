@@ -10,6 +10,9 @@ import Pinecone1 from "./component/Assets/Pinecone1.png"
 import Pinecone2 from "./component/Assets/Pinecone2.png"
 import Pinecone3 from "./component/Assets/Pinecone3.png"
 import Pinecone4 from "./component/Assets/Pinecone4.png"
+import Integration1 from "./component/Assets/Code_Integration1.png"
+import Integration2 from "./component/Assets/Code_Integration2.png"
+import Integration3 from "./component/Assets/Code_Integration3.png"
 
 export default function Home() {
   return (
@@ -94,6 +97,49 @@ export default function Home() {
             - Untuk melakukan konfigurasi pada Angel AI, kita perlu melakukan cloning pada <Link href="https://github.com/Sayati17/Angel-AI" sx={{color:'blue'}}>Repository Github Angel AI</Link><br/>
             - Cloning bisa dilakukan dengan memasukan command <code>git clone https://github.com/Sayati17/Angel-AI.git </code> pada Command Prompt / Command Line di folder yang diinginkan <br/>
             - Pada folder angelai, tambahkan dan masukan file dengan nama config.py
+            - Lalu masukan template berikut: <br/>
+            <code>
+              # Database Config<br/>
+              db_user = ""<br/>
+              mysql_db = ""<br/>
+              db_host = ""<br/>
+              db_password = ""<br/>
+              db_port = 3306<br/>
+              query = "SELECT * FROM tablePromptInjection"<br/>
+              query2 = "SELECT * FROM tableSanitize"<br/><br/>
+
+              # Pinecone Setup<br/>
+              pinecone_api_key = ""  # Get from Pinecone API Keys tab<br/>
+              pinecone_region = ""<br/> #Get from index's region
+              pinecone_db = "angelai"<br/>
+              pinecone_dimension = 384<br/>
+              pinecone_index_name = "angelai"<br/>
+              pinecone_index_host = ""  # Index host from Pinecone<br/><br/>
+
+              #Text Classifier Setup (Jangan diganti)<br/>
+              model_name = "protectai/deberta-v3-base-prompt-injection-v2"<br/>
+            </code><br/>
+            <b>Langkah 2: Install python requirements</b><br/>
+            - Saat melakukan cloning pada repository github, terdapat file requirements.txt yang dapat digunakan untuk install library yang akan digunakan <br/>
+            - jalankan Command Prompt / Terminal pada folder yang sama, lalu masukan command <code>pip install -r requirements.txt</code>
+
+            <Typography variant="h3">Integration with Chatbot AI</Typography><br/>
+            - Sebagai contoh, disini kami menggunakan Gemini AI API untuk integrasi<br/>
+            - Pada API yang akan digunakan untuk memproses prompt, kami mengimport dan memanggil class yang dipakai oleh Angel AI<br/>
+            <code>
+              from sim_db import simmilarity_check<br/>
+              from text_classifier import textClassifier<br/>
+              from conn import mysqlConnect<br/>
+              from sanitize import sanitizePrompt<br/>
+            </code><br/>
+            - Untuk menggunakan fungsi Text Classifier dan Database Simmilarity Search, kami akan memanggil class dan functionnya
+            <img src={Integration1} alt="integration1"/><br/>
+            - Function check_simmilarity dan get_classification_score akan mereturn output berupa score dan akan ditampung di dalam variable <br/>
+            - Untuk melakukan evaluase Score kami mengggunakan logic berikut:<br/>
+            <img src={Integration2} alt="integration2"/><br/>
+            - Kami melakukan sanitasi prompt setelah prompt sudah melewati proses evaluasi (dinyatakan aman secara score) dan berikut adalah cara menggunakan sanitasi<br/>
+            <img src={Integration3} alt="integration3"/><br/>
+            - yang akan diterima oleh Chabot AI adalah prompt yang sudah disanitasi dan akan diproses oleh Chatbot AI.
           </Typography>
         </Box>
       </Box>
