@@ -22,4 +22,4 @@ class textClassifier:
             {"label": entry["label"], "score": f"{entry['score']:.5f}"} for entry in result
         ]
         injection_score = next((entry['score'] for entry in formatted_result if entry['label'] == 'INJECTION'), None)
-        return int(float(injection_score))
+        return float(injection_score)

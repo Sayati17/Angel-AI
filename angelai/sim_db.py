@@ -10,6 +10,7 @@ class simmilarity_check:
         self.index_name = index_name or config.pinecone_index_name
         self.dimension = dimension or config.pinecone_dimension
         self.index = self._initialize_pinecone()
+        self.prepare_index()
 
     def _initialize_pinecone(self):
         return pineconeHandler(self.api_key, self.region, self.index_name, self.dimension)
