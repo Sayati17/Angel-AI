@@ -84,6 +84,7 @@ pinecone_index_host = "" # Index host from Pinecone<br/>
 <br/>
 model_name = "protectai/deberta-v3-base-prompt-injection-v2"<br/>
 """<br/>
+
 **Langkah 2: Install python requirements**
 - Saat melakukan cloning pada repository github, terdapat file requirements.txt yang dapat digunakan untuk install library yang akan digunakan
 - jalankan Command Prompt / Terminal pada folder yang sama, lalu masukan command pip install -r requirements.txt
