@@ -65,8 +65,7 @@ SanitizeName TEXT NULL
 - Untuk melakukan konfigurasi pada Angel AI, kita perlu melakukan cloning pada Repository Github Angel AI
 - Cloning bisa dilakukan dengan memasukan command git clone https://github.com/Sayati17/Angel-AI.git pada Command Prompt / Command Line di folder yang diinginkan
 - Pada folder angelai, tambahkan dan masukan file dengan nama config.py - Lalu masukan template berikut:
-
-# Database Config
+"""
 db_user = ""
 mysql_db = ""
 db_host = ""
@@ -75,7 +74,6 @@ db_port = 3306
 query = "SELECT * FROM tablePromptInjection"
 query2 = "SELECT * FROM tableSanitize"
 
-# Pinecone Setup
 pinecone_api_key = "" # Get from Pinecone API Keys tab
 pinecone_region = ""
 #Get from index's region pinecone_db = "angelai"
@@ -83,9 +81,8 @@ pinecone_dimension = 384
 pinecone_index_name = "angelai"
 pinecone_index_host = "" # Index host from Pinecone
 
-#Text Classifier Setup (Jangan diganti)
 model_name = "protectai/deberta-v3-base-prompt-injection-v2"
-
+"""
 **Langkah 2: Install python requirements**
 - Saat melakukan cloning pada repository github, terdapat file requirements.txt yang dapat digunakan untuk install library yang akan digunakan
 - jalankan Command Prompt / Terminal pada folder yang sama, lalu masukan command pip install -r requirements.txt
