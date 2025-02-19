@@ -64,25 +64,26 @@ SanitizeName TEXT NULL
 **Langkah 1: Cloning Repository**
 - Untuk melakukan konfigurasi pada Angel AI, kita perlu melakukan cloning pada Repository Github Angel AI
 - Cloning bisa dilakukan dengan memasukan command git clone https://github.com/Sayati17/Angel-AI.git pada Command Prompt / Command Line di folder yang diinginkan
-- Pada folder angelai, tambahkan dan masukan file dengan nama config.py - Lalu masukan template berikut:
-"""
-db_user = ""
-mysql_db = ""
-db_host = ""
-db_password = ""
-db_port = 3306
-query = "SELECT * FROM tablePromptInjection"
-query2 = "SELECT * FROM tableSanitize"
-
-pinecone_api_key = "" # Get from Pinecone API Keys tab
-pinecone_region = ""
-#Get from index's region pinecone_db = "angelai"
-pinecone_dimension = 384
-pinecone_index_name = "angelai"
-pinecone_index_host = "" # Index host from Pinecone
-
-model_name = "protectai/deberta-v3-base-prompt-injection-v2"
-"""
+- Pada folder angelai, tambahkan dan masukan file dengan nama config.py
+- Lalu masukan template berikut:<br/>
+"""<br/>
+db_user = ""<br/>
+mysql_db = ""<br/>
+db_host = ""<br/>
+db_password = ""<br/>
+db_port = 3306<br/>
+query = "SELECT * FROM tablePromptInjection"<br/>
+query2 = "SELECT * FROM tableSanitize"<br/>
+<br/>
+pinecone_api_key = "" # Get from Pinecone API Keys tab<br/>
+pinecone_region = ""<br/>
+#Get from index's region pinecone_db = "angelai"<br/>
+pinecone_dimension = 384<br/>
+pinecone_index_name = "angelai"<br/>
+pinecone_index_host = "" # Index host from Pinecone<br/>
+<br/>
+model_name = "protectai/deberta-v3-base-prompt-injection-v2"<br/>
+"""<br/>
 **Langkah 2: Install python requirements**
 - Saat melakukan cloning pada repository github, terdapat file requirements.txt yang dapat digunakan untuk install library yang akan digunakan
 - jalankan Command Prompt / Terminal pada folder yang sama, lalu masukan command pip install -r requirements.txt
